@@ -63,7 +63,7 @@ Build a machine learning model to classify news articles as **Real** ✅ or **Fa
 
 ---
 
-### 🎨 **Visualizations**
+## 🎨 **Visualizations**
 * ☁️ Generated WordCloud showing the **most frequent words** in news articles.
 
 ---
