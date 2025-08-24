@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fake News Detector</h1>
+            <p>Check if your news is likely to be true or fake using AI</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <form id="news-form">
+                    <div class="form-group">
+                        <label for="news-text">Paste news text below:</label>
+                        <textarea id="news-text" name="news_text" rows="8" placeholder="Enter the news article or text you want to verify..." required></textarea>
+                    </div>
+                    <button type="submit" id="analyze-btn">Analyze News</button>
+                </form>
+            </div>
+
+            <div class="result-section" id="result-section" style="display: none;">
+                <h2>Analysis Result</h2>
+                <div class="result-card">
+                    <div class="result-header">
+                        <span class="prediction-label" id="prediction-label">Loading...</span>
+                        <span class="confidence" id="confidence">0%</span>
+                    </div>
+                    <div class="news-preview">
+                        <p id="news-preview"></p>
+                    </div>
+                    <div class="result-explanation">
+                        <p id="explanation"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing text with AI model...</p>
+            </div>
+
+            <div class="error-message" id="error-message" style="display: none;">
+                <p></p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Note: This is a demonstration tool. Always verify information through multiple reliable sources.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('news-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const loading = document.getElementById('loading');
+            const resultSection = document.getElementById('result-section');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Hide previous results and errors
+            resultSection.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Show loading state
+            loading.style.display = 'block';
+            analyzeBtn.disabled = true;
+            analyzeBtn.textContent = 'Analyzing...';
+            
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                loading.style.display = 'none';
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = 'Analyze News';
+                
+                if (data.error) {
+                    errorMessage.style.display = 'block';
+                    errorMessage.querySelector('p').textContent = data.error;
+                    return;
+                }
+                
+                // Display results
+                const predictionLabel = document.getElementById('prediction-label');
+                const confidence = document.getElementById('confidence');
+                const newsPreview = document.getElementById('news-preview');
+                const explanation = document.getElementById('explanation');
+                
+                predictionLabel.textContent = data.prediction;
+                confidence.textContent = `${(data.confidence * 100).toFixed(0)}% confidence`;
+                newsPreview.textContent = data.news_text;
+                
+                // Set appropriate colors based on prediction
+                if (data.prediction === 'True') {
+                    predictionLabel.classList.add('true');
+                    predictionLabel.classList.remove('fake');
+                    explanation.textContent = 'This text appears to be legitimate news based on our AI analysis. However, you should still verify information through trusted sources.';
+                } else if (data.prediction === 'Fake') {
+                    predictionLabel.classList.add('fake');
+                    predictionLabel.classList.remove('true');
+                    explanation.textContent = 'This text shows characteristics of potentially fake news. Be cautious and verify this information through reliable sources before sharing.';
+                } else {
+                    // Handle error case
+                    predictionLabel.classList.remove('true', 'fake');
+                    explanation.textContent = data.message || 'An error occurred during analysis.';
+                }
+                
+                resultSection.style.display = 'block';
+            })
+            .catch(error => {
+                loading.style.display = 'none';
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = 'Analyze News';
+                
+                errorMessage.style.display = 'block';
+                errorMessage.querySelector('p').textContent = 'An error occurred. Please try again.';
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
