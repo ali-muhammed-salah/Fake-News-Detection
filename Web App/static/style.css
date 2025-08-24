@@ -200,6 +200,59 @@ footer {
     font-size: 0.9rem;
 }
 
+/* Social Media Links */
+.social-links {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.social-links p {
+    margin-bottom: 10px;
+    color: #5f6368;
+    font-weight: 500;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.social-icons a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-icons i {
+    font-size: 20px;
+}
+
+/* Specific icon colors on hover */
+.social-icons a:nth-child(1):hover { /* LinkedIn */
+    background: linear-gradient(135deg, #0077B5 0%, #00A0DC 100%);
+}
+
+.social-icons a:nth-child(2):hover { /* Kaggle */
+    background: linear-gradient(135deg, #20BEFF 0%, #1476BF 100%);
+}
+
+.social-icons a:nth-child(3):hover { /* GitHub */
+    background: linear-gradient(135deg, #333 0%, #6e5494 100%);
+}
+
 @media (max-width: 600px) {
     body {
         padding: 10px;
