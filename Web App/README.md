@@ -26,6 +26,7 @@ This web application provides a user-friendly interface for detecting fake news 
 ```
 fake_news_detector_web_app/
 ├── app.py                 # Flask application
+├── important instructions.txt      # App instructions
 ├── fake_news_model.joblib      # Trained ML model
 ├── fake_news_vectorizer.joblib # Text vectorizer
 ├── requirements.txt       # Python dependencies
