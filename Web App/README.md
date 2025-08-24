@@ -119,9 +119,9 @@ For issues and questions:
 ## 📞 Contact the Developer
 If you need assistance or want to connect with the developer:
 
-**LinkedIn**: https://www.linkedin.com/in/ali-muhammed-salah
-**Kaggle**: https://www.kaggle.com/alimuhammed10
-**GitHub**: https://github.com/ali-muhammed-salah
+* **LinkedIn**: https://www.linkedin.com/in/ali-muhammed-salah
+* **Kaggle**: https://www.kaggle.com/alimuhammed10
+* **GitHub**: https://github.com/ali-muhammed-salah
 
 ---
 
