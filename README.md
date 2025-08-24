@@ -76,6 +76,12 @@ Build a machine learning model to classify news articles as **Real** ✅ or **Fa
 
 ---
 
+## 📊 **Web Application**
+
+The machine learning model has been deployed as a user-friendly web application. For details about the web app implementation, setup instructions, and usage guide, please check the documentation in the **Web App** folder.
+
+---
+
 ## 💡 **Key Learnings**
 
 * Multi-class classification using classical methods
