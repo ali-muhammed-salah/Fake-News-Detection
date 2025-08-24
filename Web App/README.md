@@ -106,12 +106,22 @@ http://localhost:5000
    pip install -r requirements.txt
    ```
 
-## 📞 Support
+## 🆘 Support
 
 For issues and questions:
-1. Check that all files are in the correct locations
-2. Verify all Python packages are installed correctly
-3. Ensure your system meets the prerequisites
+
+- Check that all files are in the correct locations
+- Verify all Python packages are installed correctly  
+- Ensure your system meets the prerequisites
+
+---
+
+## 📞 Contact the Developer
+If you need assistance or want to connect with the developer:
+
+**LinkedIn**: https://www.linkedin.com/in/ali-muhammed-salah
+**Kaggle**: https://www.kaggle.com/alimuhammed10
+**GitHub**: https://github.com/ali-muhammed-salah
 
 ---
 
